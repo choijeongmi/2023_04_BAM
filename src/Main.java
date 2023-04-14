@@ -1,6 +1,4 @@
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,25 +25,22 @@ public class Main {
 				System.out.println("== 게시글 작성 ==");
 				int id = lastArticleId + 1;
 				lastArticleId = id;
-				
-				
+
 				System.out.printf("제목 : ");
 				String title = sc.nextLine();
 				System.out.printf("내용 : ");
 				String body = sc.nextLine();
-				
-				Date regDate = new Date();
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-				
-				System.out.println(formatter.format(regDate));
 
-				Article article = new Article(id, title, body, regDate);
+				Article article = new Article(id, title, body, Util.getDateStr());
 
 				articles.add(article);
 
 				System.out.printf("%d번 글이 생성되었습니다\n", id);
 
-			}
+			} 
+			
+	
+
 			else if (cmd.equals("article list")) {
 				System.out.println("== 게시글 목록 ==");
 				if (articles.size() == 0) {
@@ -53,15 +48,79 @@ public class Main {
 					continue;
 				}
 
-				System.out.println("번호	|	제목	");
+				System.out.println("번호	|	제목	|		작성날짜");
 
 				for (int i = articles.size() - 1; i >= 0; i--) {
 					Article article = articles.get(i);
 
-					System.out.printf("%d	|	%s	\n", article.id, article.title);
+					System.out.printf("%d	|	%s	|	%s\n", article.id, article.title, article.regDate);
 				}
 			}
+			
+			else if (cmd.startsWith("article modify ")) {
+				System.out.println("== 게시글 수정 ==");
+				
+				String[] cmdBits = cmd.split(" ");
 
+				int id = Integer.parseInt(cmdBits[2]);
+				Article foundArticle = null;
+				
+				for (int i = articles.size() - 1; i >= 0; i--) {
+					Article article = articles.get(i);
+					
+					if (article.id == id) {
+						foundArticle = article;
+						break;
+					}
+					
+				}
+			
+
+			if (foundArticle == null) {
+				System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
+				continue;
+			}
+			System.out.printf("제목 : ");
+			String title = sc.nextLine(); // 내용을 받겠다. 입력할 수 있게 도와주는 코드.
+			System.out.printf("내용 : ");
+			String body = sc.nextLine();
+
+			foundArticle.title = title;
+			foundArticle.body = body;
+
+			System.out.printf("%d번 게시물이 수정 되었습니다.\n", id);
+
+		}
+			
+			else if (cmd.startsWith("article delete ")) {
+				String[] cmdBits = cmd.split(" ");
+
+				int id = Integer.parseInt(cmdBits[2]);
+
+				int foundIndex = -1;
+				for (int i = 0; i < articles.size(); i++) {
+					Article article = articles.get(i);
+
+					if (article.id == id) {
+
+						foundIndex = i;
+						break;
+					}
+				}
+				if (foundIndex == -1) {
+					System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
+					continue;
+				}
+				articles.remove(foundIndex); // 또는 (id -1) 리무브id값은 3 어레이리스트 값은 2이기 때문에 -1을 해준다 방번호는 0부터 시작이기 때문에~~
+
+				System.out.printf("%d번 게시물이 삭제 되었습니다.\n", id);
+
+			}
+
+
+	
+
+				
 			else if (cmd.startsWith("article detail ")) {
 				String[] cmdBits = cmd.split(" "); // array를 쓸 수 없는 이유는 split이 string의 배열이라 사용 불가.
 //				int id = cmdBits[2]; // > cmdBits는 string(문자)이므로  int는 안되서 형변환을 해줘야 한다.
@@ -69,15 +128,15 @@ public class Main {
 				int id = Integer.parseInt(cmdBits[2]);
 				Article foundArticle = null;
 				for (Article article : articles) {
-					
+
 					if (article.id == id) {
 						foundArticle = article;
 						break;
-					}  
-					if ( foundArticle == null) {
+					}
+					if (foundArticle == null) {
 						System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
 						continue;
-						
+
 					}
 				}
 				System.out.println("== 게시글 상세보기 ==");
@@ -86,18 +145,16 @@ public class Main {
 				System.out.printf("내용 : %s\n", foundArticle.body);
 				System.out.printf("작성날짜 : %s\n", foundArticle.regDate);
 
-			} else {
-				System.out.println("존재하지 않는 명령어 입니다.");
-			}
+			}else{System.out.println("존재하지 않는 명령어 입니다.");}
 //				split : 문장 자르기 
-		}
 
-		sc.close();
+}
 
-		System.out.println("== 프로그램 끝 ==");
+sc.close();
 
-	}
+System.out.println("== 프로그램 끝 ==");
 
+}
 
 }
 
@@ -105,9 +162,9 @@ class Article {
 	int id;
 	String title;
 	String body;
-	Date regDate;
+	String regDate;
 
-	public Article(int id, String title, String body, Date regDate) {
+	public Article(int id, String title, String body, String regDate) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
