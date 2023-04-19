@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Util.Util;
 import bam.controller.ArticleController;
+import bam.controller.Controller;
 import bam.controller.MemberController;
 import bam.dto.Article;
 import bam.dto.Member;
@@ -38,39 +39,33 @@ public class App {
 			if (cmd.equals("exit")) {
 				break;
 			}
-
-			if (cmd.equals("member join")) {
-				memberController.dojoin();
+			
+			String[] cmdBits = cmd.split(" ");
+			
+			if(cmdBits.length == 1) {
+				System.out.println("명령어를 확인 해주세요.");
+				continue;
 			}
 			
-			else if (cmd.equals("article write")) {
-				articleController.dowrite();
-					
-			}
-
-
-			else if (cmd.startsWith("article list")) {
-				articleController.showlist(cmd);
+			String controllerName = cmdBits[0];
+			String methodName = cmdBits[1];
+			
+			Controller controller = null;
+			
+			if(controllerName.equals("member")) {
+				controller = memberController;
 				
-				
+			}else if(controllerName.equals("article")) {
+				controller = articleController;
 			}
-			else if (cmd.startsWith("article detail ")) {
-				articleController.showdetail(cmd);
-			} 
-
-			else if (cmd.startsWith("article modify ")) {
-				articleController.domodify(cmd);
-
-				
-			}
-			else if (cmd.startsWith("article delete ")) {
-				articleController.dodelete(cmd);
-			}
-
 			else {
 				System.out.println("존재하지 않는 명령어 입니다.");
+				continue;
 			}
-//				split : 문장 자르기 
+			
+			controller.doAtcion(cmd, methodName);
+
+
 
 		}
 
@@ -80,15 +75,7 @@ public class App {
 
 	}
 
-//	private Article getArticleById(int id) {
-//		for (Article article : articles) {
-//			if (article.id == id) { // 순회해서 일치하는게 있으면
-//				return article; // 아티클을 리턴하겠다.
-//
-//			}
-//		}
-//		return null;
-//	}
+
 	
 
 	private void makeTestData() {

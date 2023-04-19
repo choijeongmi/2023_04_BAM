@@ -7,11 +7,12 @@ import java.util.Scanner;
 import Util.Util;
 import bam.dto.Article;
 
-public class ArticleController {
+public class ArticleController extends Controller {
 
 	private List<Article> articles;
 	private Scanner sc;
 	private int lastArticleId;
+	private String cmd;
 	
 
 	public ArticleController(List<Article> articles, Scanner sc) {
@@ -19,8 +20,37 @@ public class ArticleController {
 		this.sc = sc;
 		this.lastArticleId = 0;
 	}
+	
+	@Override
+	public void doAtcion(String cmd, String methodName) {
+//		controller자체가 abstract 형식이라 자식인 클래스에 추상메서드를 오버라이딩 해줘야 한다		
+		this.cmd = cmd;
+		switch(methodName) {
+		case"write":
+			dowrite();
+			break;
+			
+		case"list":
+			showlist();
+			break;
+			
+		case"detail":
+			showdetail();
+			break;
+			
+		case"modify":
+			domodify();
+			break;
+			
+		case"delete":
+			dodelete();
+			break;
+		}
+	}
+	
+	
 
-	public void dowrite() {
+	private void dowrite() {
 		System.out.println("== 게시글 작성 ==");
 		int id = lastArticleId + 1;
 		lastArticleId = id;
@@ -38,7 +68,7 @@ public class ArticleController {
 
 	}
 
-	public void showlist(String cmd) {
+	private void showlist() {
 		if (articles.size() == 0) {
 			System.out.println("존재하는 게시물이 없습니다");
 			return;
@@ -77,11 +107,19 @@ public class ArticleController {
 
 	}
 
-	public void showdetail(String cmd) {
+	private void showdetail() {
 		String[] cmdBits = cmd.split(" "); // array를 쓸 수 없는 이유는 split이 string의 배열이라 사용 불가.
 //		int id = cmdBits[2]; // > cmdBits는 string(문자)이므로  int는 안되서 형변환을 해줘야 한다.
 		
+		
+		if(cmdBits.length == 2) {
+			System.out.println("명령어를 확인 해주세요.");
+			return;
+		}
+		
 		int id = Integer.parseInt(cmdBits[2]);
+		
+		
 		
 		Article foundArticle = getArticleById(id);
 		
@@ -100,8 +138,13 @@ public class ArticleController {
 
 	}
 
-	public void domodify(String cmd) {
+	private void domodify() {
 		String[] cmdBits = cmd.split(" ");
+		
+		if(cmdBits.length == 2) {
+			System.out.println("명령어를 확인 해주세요.");
+			return;
+		}
 
 		int id = Integer.parseInt(cmdBits[2]);
 
@@ -126,9 +169,14 @@ public class ArticleController {
 
 	}
 
-	public void dodelete(String cmd) {
+	private void dodelete() {
 		System.out.println("== 게시글 삭제 ==");
 		String[] cmdBits = cmd.split(" ");
+		
+		if(cmdBits.length == 2) {
+			System.out.println("명령어를 확인 해주세요.");
+			return;
+		}
 
 		int id = Integer.parseInt(cmdBits[2]);
 
@@ -155,6 +203,8 @@ public class ArticleController {
 		}
 		return null;
 	}
+
+	
 	
 }
 

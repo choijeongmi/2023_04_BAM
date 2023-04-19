@@ -7,19 +7,33 @@ import Util.Util;
 
 import bam.dto.Member;
 
-public class MemberController {
+public class MemberController extends Controller {
 
 	private List<Member> members;
 	private Scanner sc;
 	private int lastMemberId;
+	
 
 	public MemberController(List<Member> members, Scanner sc) {
 		this.members = members;
 		this.sc = sc;
 		this.lastMemberId = 0;
 	}
+	
+	@Override
+	public void doAtcion(String cmd, String methodName) {
+		
+		switch(methodName) {
+		case "join":
+			dojoin();
+			
+			break;
+		}
+		
+	}
+	
 
-	public void dojoin() {
+	private void dojoin() {
 
 		System.out.println("== 회원 가입 ==");
 		int id = lastMemberId + 1;
@@ -83,5 +97,9 @@ public class MemberController {
 		}
 		return true;
 	}
+
+	
+
+	
 
 }
