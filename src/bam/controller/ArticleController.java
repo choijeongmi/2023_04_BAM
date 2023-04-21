@@ -198,7 +198,8 @@ public class ArticleController extends Controller {
 
 		System.out.printf("%d번 게시물이 삭제 되었습니다.\n", id);
 
-	}
+	}  
+	//깃 바보야ㅜ
 
 	private Article getArticleById(int id) {
 		for (Article article : articles) {
