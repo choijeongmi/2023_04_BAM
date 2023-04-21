@@ -45,6 +45,8 @@ public class ArticleController extends Controller {
 		case"delete":
 			dodelete();
 			break;
+			default:
+				System.out.println("명령어를 확인 해주세요.");
 		}
 	}
 	
@@ -202,6 +204,24 @@ public class ArticleController extends Controller {
 			}
 		}
 		return null;
+	}
+	@Override
+	public void makeTestData() {
+		System.out.println("테스트용 게시물 데이터 5개 생성");
+
+		for (int i = 1; i <= 5; i++) {
+
+			int id = lastArticleId + 1;
+			lastArticleId = id;
+
+			String title = "제목" + i;
+			String body = "내용" + i;
+
+			Article article = new Article(i, title, body, Util.getDateStr());
+			articles.add(article);
+
+		}
+
 	}
 
 	

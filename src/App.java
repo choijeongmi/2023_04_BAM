@@ -25,13 +25,15 @@ public class App {
 
 	public void run() {
 		System.out.println("== 프로그램 시작 ==");
-		makeTestData();
 		
 		Scanner sc = new Scanner(System.in);
 		
 		MemberController memberController = new MemberController(members, sc);
 		ArticleController articleController = new ArticleController(articles, sc);
 
+		articleController.makeTestData();
+		memberController.makeTestData();
+		
 		while (true) {
 			System.out.printf("명령어) ");
 			String cmd = sc.nextLine();
@@ -78,22 +80,6 @@ public class App {
 
 	
 
-	private void makeTestData() {
-		System.out.println("테스트용 게시물 데이터 5개 생성");
-
-		for (int i = 1; i <= 5; i++) {
-
-			int id = lastArticleId + 1;
-			lastArticleId = id;
-
-			String title = "제목" + i;
-			String body = "내용" + i;
-
-			Article article = new Article(i, title, body, Util.getDateStr());
-			articles.add(article);
-
-		}
-
-	}
+	
 
 }
