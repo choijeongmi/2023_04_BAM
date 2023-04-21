@@ -32,6 +32,8 @@ public class App {
 		
 		
 		
+		
+		
 		while (true) {
 			System.out.printf("명령어) ");
 			String cmd = sc.nextLine();
@@ -53,6 +55,7 @@ public class App {
 			Controller controller = null;
 			
 			if(controllerName.equals("member")) {
+				
 				controller = memberController;
 				
 			}else if(controllerName.equals("article")) {
@@ -63,6 +66,31 @@ public class App {
 				continue;
 			}
 			
+			String actionName = controllerName = controllerName + "/" + methodName;
+			
+			switch(actionName) {
+			case "article/write":
+			case "article/modify":
+			case "article/delete":
+			case "member/logout":
+				if(Controller.LoginedMember == null) {
+					System.out.println("로그인 후 이용해주세요");
+					continue;
+				}
+				break;
+			case "member/join":
+			case "member/login":
+				if(Controller.LoginedMember != null) {
+					System.out.println("로그아웃 후 이용해주세요");
+					continue;
+				}
+				break;
+			}
+			
+				
+			
+				
+					
 			controller.doAtcion(cmd, methodName);
 
 

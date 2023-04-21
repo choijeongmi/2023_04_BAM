@@ -26,10 +26,6 @@ public class ArticleController extends Controller {
 		this.cmd = cmd;
 		switch (methodName) {
 		case "write":
-			if (LoginedMember == null) {
-				System.out.println("로그인 상태가 아닙니다.");
-				return;
-			}
 			dowrite();
 			break;
 
@@ -42,18 +38,10 @@ public class ArticleController extends Controller {
 			break;
 
 		case "modify":
-			if (LoginedMember == null) {
-				System.out.println("로그인 상태가 아닙니다.");
-				return;
-			}
 			domodify();
 			break;
 
 		case "delete":
-			if (LoginedMember == null) {
-				System.out.println("로그인 상태가 아닙니다.");
-				return;
-			}
 			dodelete();
 			break;
 		default:
