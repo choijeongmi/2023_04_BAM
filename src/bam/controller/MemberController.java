@@ -11,7 +11,7 @@ public class MemberController extends Controller {
 	private List<Member> members;
 	private Scanner sc;
 	private int lastMemberId;
-	private Member loginedMember;
+	
 
 	public MemberController(List<Member> members, Scanner sc) {
 		this.members = members;
@@ -24,15 +24,27 @@ public class MemberController extends Controller {
 
 		switch (methodName) {
 		case "join":
+			if(LoginedMember != null) {
+				System.out.println("로그아웃 후 이용해주세요");
+				return;
+			}
 			dojoin();
 
 			break;
 
 		case "login":
+			if(LoginedMember != null) {
+				System.out.println("로그아웃 후 이용해주세요");
+				return;
+			}
 			dologin();
 
 			break;
 		case "logout":
+			if(LoginedMember == null) {
+				System.out.println("로그인 상태가 아닙니다.");
+				return;
+			}
 			dologout();
 			
 			break;
@@ -45,11 +57,7 @@ public class MemberController extends Controller {
 
 	private void dojoin() {
 		
-		if(loginedMember != null) {
-			System.out.println("로그아웃 후 이용해주세요");
-			return;
-		}
-
+		
 		int id = lastMemberId + 1;
 		lastMemberId = id;
 
@@ -97,10 +105,7 @@ public class MemberController extends Controller {
 	private void dologin() {
 		System.out.println("== 로그인 ==");
 		
-		if(loginedMember != null) {
-			System.out.println("로그아웃 후 이용해주세요");
-			return;
-		}
+		
 
 		System.out.printf("로그인 ID : ");
 		String loginId = sc.nextLine();
@@ -119,19 +124,16 @@ public class MemberController extends Controller {
 			return;
 		}
 		
-		loginedMember = member; // 로그인한 정보를 저장하는 거임. 
+		LoginedMember = member; // 로그인한 정보를 저장하는 거임. 
 		
 		System.out.printf("%s님 환영합니다.\n", member.name);
 		
 	}
 	
 	private void dologout() {
-		if(loginedMember == null) {
-			System.out.println("로그인 상태가 아닙니다.");
-			return;
-			}
+		
 				
-			loginedMember = null;
+			LoginedMember = null;
 			System.out.println("로그아웃 되었습니다.");
 			
 		}

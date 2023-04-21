@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import Util.Util;
 import bam.controller.ArticleController;
 import bam.controller.Controller;
 import bam.controller.MemberController;
@@ -13,13 +12,10 @@ public class App {
 
 	private List<Article> articles;
 	private List<Member> members;
-	private int lastArticleId;
 	
-
 	public App() {
 		articles = new ArrayList<>();
 		members = new ArrayList<>();
-		lastArticleId = 0;
 		
 	}
 
@@ -33,6 +29,8 @@ public class App {
 
 		articleController.makeTestData();
 		memberController.makeTestData();
+		
+		
 		
 		while (true) {
 			System.out.printf("명령어) ");
