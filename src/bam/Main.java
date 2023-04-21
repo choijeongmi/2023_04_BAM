@@ -1,3 +1,4 @@
+package bam;
 public class Main {
 	
 	
