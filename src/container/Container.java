@@ -6,7 +6,7 @@ import bam.service.ArticleService;
 import bam.service.MemberService;
 
 public class Container {
-	
+	//
 	public static ArticleDao articleDao;
 	public static MemberDao memberDao;
 	public static ArticleService articleService;

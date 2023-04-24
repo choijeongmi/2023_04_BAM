@@ -10,7 +10,7 @@ public class MemberService {
 	public MemberService() {
 		this.memberDao = new MemberDao();
 	}
-
+//
 	public int setLastId() {
 		return memberDao.setLastId();
 	}

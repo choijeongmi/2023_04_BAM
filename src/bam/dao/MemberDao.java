@@ -10,7 +10,7 @@ public class MemberDao extends Dao {
 
 	private List<Member> members;
 	
-	
+	//
 	public MemberDao() {
 		this.members = new ArrayList<>();
 		

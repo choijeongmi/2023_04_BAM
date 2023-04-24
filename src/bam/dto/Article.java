@@ -8,7 +8,7 @@ public class Article {
 	public String body;
 	public String regDate;
 	
-
+//
 	public  Article(int id, String title, String body, int memberId, String regDate) {
 		this.id = id;
 		this.title = title;

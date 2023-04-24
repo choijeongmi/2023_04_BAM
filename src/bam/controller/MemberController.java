@@ -8,7 +8,7 @@ import bam.service.MemberService;
 import container.Container;
 
 public class MemberController extends Controller {
-
+//
 	private Scanner sc;
 	private MemberService memberService;
 

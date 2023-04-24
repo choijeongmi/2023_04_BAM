@@ -53,7 +53,7 @@ public class ArticleController extends Controller {
 			break;
 		}
 	}
-
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ구현 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	private void dowrite() {
 
 		System.out.println("== 게시글 작성 ==");
