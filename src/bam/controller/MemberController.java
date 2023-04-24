@@ -8,7 +8,11 @@ import bam.service.MemberService;
 import container.Container;
 
 public class MemberController extends Controller {
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 	private Scanner sc;
 	private MemberService memberService;
 

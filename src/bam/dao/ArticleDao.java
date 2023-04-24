@@ -16,7 +16,11 @@ public class ArticleDao extends Dao {
 		this.lastArticleId = 0;
 	}
 
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 
 	public void add(Article article) {
 		articles.add(article);

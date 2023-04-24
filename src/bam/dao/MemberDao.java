@@ -10,11 +10,16 @@ public class MemberDao extends Dao {
 
 	private List<Member> members;
 	
+<<<<<<< HEAD
 	//
+=======
+	
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 	public MemberDao() {
 		this.members = new ArrayList<>();
 		
 	}
+<<<<<<< HEAD
 	
 	public String getWriterName(int memberId) {
 
@@ -25,6 +30,8 @@ public class MemberDao extends Dao {
 		}
 		return null;
 	}
+=======
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 
 
 

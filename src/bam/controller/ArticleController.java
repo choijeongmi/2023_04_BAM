@@ -1,16 +1,24 @@
 package bam.controller;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 import java.util.List;
 import java.util.Scanner;
 
 import Util.Util;
 import bam.dto.Article;
 import bam.service.ArticleService;
+<<<<<<< HEAD
 import bam.service.MemberService;
+=======
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 import container.Container;
 
 public class ArticleController extends Controller {
 
+<<<<<<< HEAD
 	private Scanner sc;
 	private String cmd;
 	private ArticleService articleService;
@@ -21,6 +29,19 @@ public class ArticleController extends Controller {
 		this.articleService = Container.articleService;
 		this.memberService = Container.memberService;
 		this.sc = sc;
+=======
+	
+	private Scanner sc;
+	private String cmd;
+	private ArticleService articleService;
+
+	
+	
+	public ArticleController(Scanner sc) {
+		
+		this.sc = sc;
+		this.articleService = Container.articleService;
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 
 	}
 
@@ -73,11 +94,24 @@ public class ArticleController extends Controller {
 	}
 
 	private void showlist() {
+<<<<<<< HEAD
 
 		String searchKeyword = cmd.substring("article list".length()).trim();
 
 		List<Article> printArticles = articleService.getArticles(searchKeyword);
 
+=======
+		
+		String searchKeyword = cmd.substring("article list".length()).trim();
+		
+		List<Article> printArticles = articleService.getArticles(searchKeyword);
+		
+		if (printArticles.size() == 0) {
+			System.out.println("존재하는 게시물이 없습니다");
+			return;
+		}
+
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 		if (printArticles.size() == 0) {
 			System.out.println("결과 없음");
 			return;
@@ -90,7 +124,13 @@ public class ArticleController extends Controller {
 		for (int i = printArticles.size() - 1; i >= 0; i--) {
 			Article article = printArticles.get(i);
 
+<<<<<<< HEAD
 			String writerName = memberService.getWriterName(article.memberId);
+=======
+			System.out.printf("%d	|	%s	|	%d	|	%s\n", article.id, article.title, article.memberId,
+					article.regDate);
+		}
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 
 			System.out.printf("%d	|	%s	|	%s	|	%s\n", article.id, article.title, article.regDate, writerName);
 		}
@@ -153,6 +193,8 @@ public class ArticleController extends Controller {
 		String title = sc.nextLine();
 		System.out.printf("수정 할 내용 : ");
 		String body = sc.nextLine();
+		
+
 
 		foundArticle.title = title;
 		foundArticle.body = body;
@@ -187,12 +229,22 @@ public class ArticleController extends Controller {
 
 		System.out.printf("%d번 게시물이 삭제 되었습니다.\n", id);
 
+<<<<<<< HEAD
 	}
+=======
+	}  
+
+
+	
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 
 	@Override
 	public void makeTestData() {
 		System.out.println("테스트용 게시물 데이터 5개 생성");
+<<<<<<< HEAD
 		articleService.makeTestData();
+=======
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 
 	}
 

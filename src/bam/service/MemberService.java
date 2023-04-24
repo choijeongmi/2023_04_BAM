@@ -10,7 +10,11 @@ public class MemberService {
 	public MemberService() {
 		this.memberDao = new MemberDao();
 	}
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 	public int setLastId() {
 		return memberDao.setLastId();
 	}
@@ -30,9 +34,13 @@ public class MemberService {
 	public void makeTestData() {
 		memberDao.makeTestData();
 	}
+<<<<<<< HEAD
 	public String getWriterName(int memberId) {
 		return memberDao.getWriterName(memberId);
 	}
+=======
+	
+>>>>>>> 22d1f2dba577cb01243d2476485f692e51bd55f6
 	
 	
 	
